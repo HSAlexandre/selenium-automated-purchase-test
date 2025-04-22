@@ -1,13 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import json
 import logging
-from pageObjects.ShopPage import ShopPage
+
+import pytest
+from selenium.webdriver.common.by import By
 from pageObjects.LoginPage import LoginPage
 
+json_path = '../data/test_e2eFramework.json'
 
-def test_e2e(browserInstance):
+with open(json_path) as f:
+    json_data = json.load(f)
+    test_list = json_data["data"]
+
+@pytest.mark.parametrize("test_item", test_list)
+def test_e2e(browserInstance, test_item):
 
     # logging config
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -20,20 +25,18 @@ def test_e2e(browserInstance):
 
     # Accessing website
     url = "https://rahulshettyacademy.com/loginpagePractise/"
-    productName = "Blackberry"
-    countryName = "United"
     driver.get(url)
 
     #Signing in
     loginPage = LoginPage(driver)
-    shopPage = loginPage.login('rahulshettyacademy', 'learning')
+    shopPage = loginPage.login(test_item["userName"], test_item["userPassword"])
 
 
     # Accessing shop section
-    shopPage.addto_Cart(productName)
+    shopPage.addto_Cart(test_item["productName"])
     checkoutPage = shopPage.goto_Checkout()
 
     #Confirming checkout
     checkoutPage.confirmCheckout()
-    checkoutPage.chooseCountry(countryName)
+    checkoutPage.chooseCountry(test_item["countryName"], test_item["partialCountryName"])
     checkoutPage.validatePurchase()
