@@ -1,4 +1,3 @@
-import logging
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,7 +16,6 @@ class CheckoutPage:
     def confirmCheckout(self):
         # Click the checkout button and confirm checkout
         self.driver.find_element(*self.confirmCheckoutButton).click()
-        logging.info("Checkout confirmed")
 
     def chooseCountry(self, countryName, partialCountryName):
 
@@ -27,17 +25,18 @@ class CheckoutPage:
         wdw = WebDriverWait(self.driver, 10)
         wdw.until(EC.presence_of_element_located((By.LINK_TEXT, countryName)))
         self.driver.find_element(By.LINK_TEXT, countryName).click()
-        logging.info("UK country selected")
 
         # Click on "Agree terms and conditions"
         self.driver.find_element(*self.termCheckbox).click()
 
         # Complete purchase
         self.driver.find_element(*self.purchaseButton).click()
-        logging.info("Completing purchase")
 
     def validatePurchase(self):
         # Check for Success alert
-        successText = self.driver.find_element(*self.alertSuccess).text
-        assert "Success! Thank you!" in successText
-        logging.info("PASS: Purchase confirmed")
+        try:
+            successText = self.driver.find_element(*self.alertSuccess).text
+            return "Success! Thank you!" in successText
+        except Exception as e:
+            print(f"Error while completing purchase: {e}")
+            return False
