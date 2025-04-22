@@ -1,6 +1,10 @@
 # 🛒 Automated Functional Test Purchase Flow with Selenium
 
-This project demonstrates an automated **end-to-end purchase process** using **Python, Selenium and pytest**. It simulates a user navigating to an e-commerce site, accessing the shop, finding a product ("Blackberry"), adding it to the cart, selecting a country, and finalizing the purchase. This project uses **Page Object Model** design pattern.
+This project demonstrates an automated **end-to-end purchase process** using **Python, Selenium and pytest**.
+
+It simulates a user navigating to an e-commerce site, accessing the shop, finding a product (You can add a product in test_e2eFramework.json file), adding it to the cart, selecting a country (You can add a country in test_e2eFramework.json file), and finalizing the purchase.
+
+This project uses **Page Object Model** design pattern.
 
 ---
 
@@ -8,9 +12,9 @@ This project demonstrates an automated **end-to-end purchase process** using **P
 
 - Access [website](https://rahulshettyacademy.com/loginpagePractis/) and Sign in
 - Navigate to the shop
-- Search for a specific product ("Blackberry")
+- Search for a specific product ("Blackberry" and "Nokia Edge) - by default, but you can change it
 - Add product to cart and proceed to checkout
-- Auto-select country (United Kingdom)
+- Auto-select country ("United Kingdom" and "Bangladesh) - by default, but you can change it
 - Agree to terms & conditions and complete the purchase
 - Verify success message
 
@@ -66,12 +70,23 @@ pytest test_e2eFramework --browser_name edge -v -s
 ```
 
 The script will:
+
+Scenario 1:
 1. Go to **Login page**
 2. Click on **Shop**
 3. Find **Blackberry**
 4. Click **Add to Cart**
 5. Proceed to **Checkout**
 6. Select **United Kingdom**
+7. Submit the order ✅
+
+Scenario 2:
+1. Go to **Login page**
+2. Click on **Shop**
+3. Find **Nokia Edge**
+4. Click **Add to Cart**
+5. Proceed to **Checkout**
+6. Select **Bangladesh**
 7. Submit the order ✅
 
 ---
@@ -93,11 +108,13 @@ The script uses `pytest` to show test result terminal.
 Example output:
 ```
 ============================= test session starts =============================
-collecting ... collected 1 item
+collecting ... collected 2 items
 
-test_e2eFramework.py::test_e2e PASSED                                    [100%]
+test_e2eFramework.py::test_e2e[test_item0] 
+test_e2eFramework.py::test_e2e[test_item1] 
 
-============================= 1 passed in 13.37s ==============================
+============================= 2 passed in 26.62s ==============================
+PASSED                        [ 50%]PASSED                        [100%]
 ```
 
 ---

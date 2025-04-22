@@ -1,5 +1,4 @@
 import logging
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,7 +10,6 @@ class CheckoutPage:
         self.driver = driver
         self.confirmCheckoutButton = (By.XPATH, "//button[@class='btn btn-success']")
         self.countrySearch = (By.ID, "country")
-        self.foundCountry = (By.LINK_TEXT, "United Kingdom")
         self.alertSuccess = (By.CLASS_NAME, "alert-success")
         self.termCheckbox = (By.XPATH, "//div[@class='checkbox checkbox-primary']")
         self.purchaseButton = (By.CSS_SELECTOR, "[type='submit']")
@@ -21,14 +19,14 @@ class CheckoutPage:
         self.driver.find_element(*self.confirmCheckoutButton).click()
         logging.info("Checkout confirmed")
 
-    def chooseCountry(self, countryName):
-        self.countryName = countryName
+    def chooseCountry(self, countryName, partialCountryName):
+
 
         # Select "UK" country
-        self.driver.find_element(*self.countrySearch).send_keys(countryName)
+        self.driver.find_element(*self.countrySearch).send_keys(partialCountryName)
         wdw = WebDriverWait(self.driver, 10)
-        wdw.until(EC.presence_of_element_located(self.foundCountry))
-        self.driver.find_element(*self.foundCountry).click()
+        wdw.until(EC.presence_of_element_located((By.LINK_TEXT, countryName)))
+        self.driver.find_element(By.LINK_TEXT, countryName).click()
         logging.info("UK country selected")
 
         # Click on "Agree terms and conditions"
