@@ -1,12 +1,13 @@
 # 🛒 Automated Functional Test Purchase Flow with Selenium
 
-This project demonstrates an automated **end-to-end purchase process** using Python and Selenium. It simulates a user navigating to an e-commerce site, accessing the shop, finding a product ("Blackberry"), adding it to the cart, selecting a country, and finalizing the purchase.
+This project demonstrates an automated **end-to-end purchase process** using Python, Selenium and pytest. It simulates a user navigating to an e-commerce site, accessing the shop, finding a product ("Blackberry"), adding it to the cart, selecting a country, and finalizing the purchase.
 
 ---
 
 ## 🚀 Features
 
-- Access website and navigate to the shop [test website](https://rahulshettyacademy.com/angularpractice/)
+- Access [website](https://rahulshettyacademy.com/loginpagePractis/) and Sign in
+- Navigate to the shop
 - Search for a specific product ("Blackberry")
 - Add product to cart and proceed to checkout
 - Auto-select country (United Kingdom)
@@ -19,8 +20,11 @@ This project demonstrates an automated **end-to-end purchase process** using Pyt
 
 - Python 3.x
 - [Selenium](https://pypi.org/project/selenium/)
+- Pytest
 - [WebDriver Manager](https://pypi.org/project/webdriver-manager/)
 - ChromeDriver
+- GeckoDriver
+- EdgeDriver
 
 ---
 
@@ -54,11 +58,15 @@ This is a simplified version of the flow being automated:
 Run the script:
 
 ```bash
-python main.py
+pytest test_e2eFramework --browser_name chrome -v -s
+OR
+pytest test_e2eFramework --browser_name firefox -v -s
+OR
+pytest test_e2eFramework --browser_name edge -v -s
 ```
 
 The script will:
-1. Go to homepage
+1. Go to **Login page**
 2. Click on **Shop**
 3. Find **Blackberry**
 4. Click **Add to Cart**
@@ -78,20 +86,18 @@ The script will:
 user_data_dir = r'C:\Users\your_user\AppData\Local\Google\Chrome\User Data'
 ```
 
-## 🧪 Test Output
+## 🧪 Pytest Output
 
-The script uses `logging` to show step-by-step progress in the terminal.
+The script uses `pytest` to show test result terminal.
 
 Example output:
 ```
-2025-04-21 20:25:25,142 INFO Initializing Webdriver
-2025-04-21 20:25:31,202 INFO Blackberry found
-2025-04-21 20:25:31,348 INFO Checkout confirmed
-2025-04-21 20:25:36,480 INFO UK country selected
-2025-04-21 20:25:36,572 INFO Completing purchase
-2025-04-21 20:25:36,589 INFO PASS: Purchase confirmed
-2025-04-21 20:25:36,589 INFO ALL TESTS PASSED!
-2025-04-21 20:25:36,589 INFO Closing browser
+============================= test session starts =============================
+collecting ... collected 1 item
+
+test_e2eFramework.py::test_e2e PASSED                                    [100%]
+
+============================= 1 passed in 13.37s ==============================
 ```
 
 ---
