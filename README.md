@@ -1,6 +1,6 @@
 # 🛒 Automated Functional Test Purchase Flow with Selenium
 
-This project demonstrates an automated **end-to-end purchase process** using **Python, Selenium and pytest**.
+This project demonstrates an automated **end-to-end purchase process** using **Python, Selenium, Pytest and Allure**.
 
 It simulates a user navigating to an e-commerce site, accessing the shop, finding a product (You can add a product in test_e2eFramework.json file), adding it to the cart, selecting a country (You can add a country in test_e2eFramework.json file), and finalizing the purchase.
 
@@ -25,6 +25,7 @@ This project uses **Page Object Model** design pattern.
 - Python 3.x
 - [Selenium](https://pypi.org/project/selenium/)
 - Pytest
+- Allure
 - [WebDriver Manager](https://pypi.org/project/webdriver-manager/)
 - ChromeDriver
 - GeckoDriver
