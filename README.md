@@ -103,18 +103,37 @@ user_data_dir = r'C:\Users\your_user\AppData\Local\Google\Chrome\User Data'
 
 ## 🧪 Pytest Output
 
-The script uses `pytest` to show test result terminal.
+The script uses `pytest` and `allure` to show test results.
 
-Example output:
+For allure report generation, run:
+
 ```
-============================= test session starts =============================
-collecting ... collected 2 items
+pytest .\test_e2eFramework.py --alluredir=..\reports
 
-test_e2eFramework.py::test_e2e[test_item0] 
-test_e2eFramework.py::test_e2e[test_item1] 
+```
 
-============================= 2 passed in 26.62s ==============================
-PASSED                        [ 50%]PASSED                        [100%]
+And then:
+
+```
+allure generate ..\reports -o ..\reports\allure-report --clean
+```
+
+HTML report will be generated for test result visualization
+
+Example output in terminal:
+```
+============================================================ test session starts ========================================
+platform win32 -- Python 3.10.0, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\<user>\PycharmProjects\selenium-automated-purchase-test\tests
+plugins: allure-pytest-2.14.0, html-4.1.1, metadata-3.1.1
+collected 2 items                                                                                                                                                                                                                   
+
+test_e2eFramework.py
+DevTools listening on ws:/devtools/browser/dd9cf6e8-5123-4f20-9045-6afdf1d27d9c
+.
+DevTools listening on ws:/devtools/browser/bdb3dbc1-da2d-4619-9345-896a3bbedb9a
+.                                                                                                                                                                                                      [100%]
+=========================================================== 2 passed in 28.17s ==========================================
 ```
 
 ---
