@@ -1,6 +1,6 @@
 # 🛒 Automated Functional Test Purchase Flow with Selenium
 
-This project demonstrates an automated **end-to-end purchase process** using Python, Selenium and pytest. It simulates a user navigating to an e-commerce site, accessing the shop, finding a product ("Blackberry"), adding it to the cart, selecting a country, and finalizing the purchase.
+This project demonstrates an automated **end-to-end purchase process** using **Python, Selenium and pytest**. It simulates a user navigating to an e-commerce site, accessing the shop, finding a product ("Blackberry"), adding it to the cart, selecting a country, and finalizing the purchase. This project uses **Page Object Model** design pattern.
 
 ---
 
